@@ -1,0 +1,8 @@
+# Default shell for scripts in this repo
+shell=ksh
+
+# SC1091: Not following sourced files (external env not available locally)
+# SC2006: Legacy backtick usage is intentional in this codebase
+# SC2034: Variables used inside SQL*Plus heredocs appear unused to ShellCheck
+# SC2164: cd without || exit is acceptable in these operational scripts
+disable=SC1091,SC2006,SC2034,SC2164
