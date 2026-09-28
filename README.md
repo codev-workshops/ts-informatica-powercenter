@@ -11,8 +11,9 @@ Data exchanges employing Informatica PowerCenter
 
 - `POWERCENTER_INVENTORY.md` — full object inventory: sources/targets with field details, mappings with transformation chains, sessions, workflows, and shell-script orchestration analysis.
 - `POWERCENTER_LINEAGE.md` — per-mapping source→target data flow and a cross-export object reuse matrix.
+- `POWERCENTER_COMPLEXITY.md` — migration complexity scoring matrix: every mapping rated by transformation count, source count, and advanced-feature usage (lookups, joiners, aggregators) plus risk flags.
 
-Both files are generated — regenerate with:
+All three are generated — regenerate with:
 
 ```sh
 python3 scripts/powercenter_extract.py
