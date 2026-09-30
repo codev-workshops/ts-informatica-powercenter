@@ -18,14 +18,19 @@
 #* -------- -------- --------------------------------------------------- *
 #*************************************************************************/
 
+if [ $# -ne 2 ] || [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: remove_file.sh <inputdir> <filename>" >&2
+    exit 1
+fi
+
 inputdir=$1
 
 filename=$2
 
-cd $inputdir
+cd "$inputdir" || { echo "Cannot cd to input directory: $inputdir" >&2; exit 1; }
 
-if [ -f $filename ]; then
-   
-   rm $filename 
+if [ -f "$filename" ]; then
+
+   rm -- "$filename"
 
 fi
