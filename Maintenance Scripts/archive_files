@@ -18,24 +18,31 @@
 #* -------- -------- --------------------------------------------------- *
 #*************************************************************************/
 
+if [ $# -ne 3 ] || [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "Usage: archive_files.sh <inputdir> <filedest> <pay_period>" >&2
+    exit 1
+fi
+
 inputdir=$1
 
 filedest=$2
 
 pay_period=$3
 
+if [ ! -d "$filedest" ]; then
+    echo "Destination directory not found: $filedest" >&2
+    exit 1
+fi
 
-cd $inputdir
+cd "$inputdir" || { echo "Cannot cd to input directory: $inputdir" >&2; exit 1; }
 
 for file in *
 do
 
-    fileprefix=$(basename $file .txt)
+    [ -f "$file" ] || continue
 
-    mv "${file}" "${filedest}"/"${fileprefix}"_P"${pay_period}".txt
+    fileprefix=$(basename "$file" .txt)
+
+    mv -- "${file}" "${filedest}"/"${fileprefix}"_P"${pay_period}".txt || exit 1
 
 done
-
-
-
-
